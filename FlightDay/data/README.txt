@@ -1,0 +1,10 @@
+How the dataset was obtained?
+
+DOT's www.transtats.bts.gov website
+Table: On-Time Performances
+Time period: 11/2016-10/2017 (including)
+Delay is considered above 15 minutes
+
+
+Some notes:
+Day of week: 1 = Monday
