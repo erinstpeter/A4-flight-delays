@@ -1,10 +1,9 @@
-d3.select("input[value=\"dow\"]").property("checked", true);
-
 var datasetDayOfWeek, datasetDayOfMonth, datasetMonthOfYear;
 
 //
 // Loading the CSV files
 //
+
 d3.csv("data/DayOfWeek.csv", function(d) {
   return {
     label : d.DayOfWeek,
@@ -12,6 +11,8 @@ d3.csv("data/DayOfWeek.csv", function(d) {
   };
 }, function(data) {
   datasetDayOfWeek = data;
+  
+  change(datasetDayOfWeek);
 });
 
 d3.csv("data/DayOfMonth.csv", function(d) {
@@ -33,6 +34,8 @@ d3.csv("data/MonthOfYear.csv", function(d) {
 });
 
 d3.selectAll("input").on("change", selectDataset);
+
+d3.select("input[value=\"dow\"]").property("checked", true);
 
 function selectDataset()
 {
@@ -80,8 +83,6 @@ var svg = d3.select("body").append("svg")
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-
-change(datasetDayOfWeek);
 
 function change(dataset) {
 
