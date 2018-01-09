@@ -80,6 +80,7 @@ var yAxis = d3.svg.axis()
 var svg = d3.select("body").append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
+            .attr("id", "times-chart")
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 

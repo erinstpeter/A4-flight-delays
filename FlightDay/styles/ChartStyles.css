@@ -5,28 +5,28 @@ body {
     position: relative;
 }
 
-svg {
+#times-chart svg {
     width: 100%;
     height: 100%;
     position: center;
 }
 
-path.slice{
+#times-chart path.slice{
     stroke-width:2px;
 }
 
-text{
+#times-chart text{
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-polyline{
+#times-chart polyline{
     opacity: .3;
     stroke: black;
     stroke-width: 2px;
     fill: none;
 }
 
-.labelValue
+#times-chart .labelValue
 {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 60%;
@@ -34,7 +34,7 @@ polyline{
 
 }
 
-label {
+#times-chart label {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: normal;
 }
@@ -56,68 +56,68 @@ label {
 }
 
 
-.legend {
+#times-chart .legend {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 60%;
 }
-rect {
+#times-chart rect {
     stroke-width: 2;
 }
 
-text {
+#times-chart text {
     font: 10px sans-serif;
 }
 
 
-text.value{
+#times-chart text.value{
     font-size: 200%;
     fill: white;
 }
 
-text.label{
+#times-chart text.label{
     font-size: 100%;
 }
 
-.axis text {
+#times-chart .axis text {
     font: 10px sans-serif;
 }
 
-.axis path{
+#times-chart .axis path{
     fill: none;
     stroke: #000;
 }
 
-.axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
-}
-
-.axis .tick line {
-    stroke-width: 1;
-    stroke: rgba(0, 0, 0, 0.2);
-}
-
-.axisHorizontal path{
-    fill: none;
-}
-
-.axisHorizontal line {
+#times-chart .axis line {
     fill: none;
     stroke: #000;
     shape-rendering: crispEdges;
 }
 
-.axisHorizontal .tick line {
+#times-chart .axis .tick line {
     stroke-width: 1;
     stroke: rgba(0, 0, 0, 0.2);
 }
 
-.bar {
+#times-chart .axisHorizontal path{
+    fill: none;
+}
+
+#times-chart .axisHorizontal line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+#times-chart .axisHorizontal .tick line {
+    stroke-width: 1;
+    stroke: rgba(0, 0, 0, 0.2);
+}
+
+#times-chart .bar {
     fill: steelblue;
     fill-opacity: .9;
 }
 
-.x.axis path {
+#times-chart .x.axis path {
     display: none;
 }
