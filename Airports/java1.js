@@ -1,4 +1,16 @@
+var diameter = 500, //max size of the bubbles
+    color    = d3.scale.category20b(); //color category
 
+var bubble = d3.layout.pack()
+    .sort(null)
+    .size([diameter, diameter])
+    .padding(1.5);
+
+var svg = d3.select("body")
+    .append("svg")
+    .attr("width", diameter)
+    .attr("height", diameter)
+    .attr("class", "bubble");
 
 d3.csv("Large_Hubs.csv", function(error, data){
 
