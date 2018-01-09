@@ -1,10 +1,9 @@
-d3.select("input[value=\"dow\"]").property("checked", true);
-
 var datasetDayOfWeek, datasetDayOfMonth, datasetMonthOfYear;
 
 //
 // Loading the CSV files
 //
+
 d3.csv("data/DayOfWeek.csv", function(d) {
   return {
     label : d.DayOfWeek,
@@ -33,6 +32,8 @@ d3.csv("data/MonthOfYear.csv", function(d) {
 });
 
 d3.selectAll("input").on("change", selectDataset);
+
+d3.select("input[value=\"dow\"]").property("checked", true);
 
 function selectDataset()
 {
