@@ -4,12 +4,23 @@
 <head>
 	<title>Best day to fly to avoid delays</title>
 	<link href="../style.css" rel="stylesheet" type="text/css">
+	<link href="styles/ChartStyles.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
 	<H1>How the day of flight affect the chances of my flight being delayed</H1>
 
 	<p>Based on DOT datasets 11/2016-10/2017</p>
 
+
+	<form>
+    	<label><input type="radio" name="dataset" id="dataset" value="dow" checked>Day Of Week</label>
+    	<label><input type="radio" name="dataset" id="dataset" value="dom">Day of Month</label>
+    	<label><input type="radio" name="dataset" id="dataset" value="moy">Month Of Year</label>
+	</form>
+
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script src="scripts/BarChartWithSelection.js"></script>
 
 </body>
 </html>
