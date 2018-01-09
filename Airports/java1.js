@@ -1,6 +1,3 @@
-
-<script>
-
 var width = 960,
     height = 500,
     padding = 1.5, // separation between same-color nodes
@@ -154,4 +151,3 @@ Array.prototype.contains = function(v) {
     return false;
 };
 
-</script>
