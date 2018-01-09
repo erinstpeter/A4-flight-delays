@@ -5,9 +5,7 @@ var width = 960,
     maxRadius = 12;
 
 var color = d3.scale.ordinal()
-      .range(["#7A99AC", "#E4002B"]);
-
-
+      .range(["#0099CC", "#CC99FF", "#E4002B" ]);
 
 d3.text("Large_Hubs_chart1.csv", function(error, text) {
   if (error) throw error;
