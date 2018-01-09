@@ -1,5 +1,5 @@
 // Load and munge data, then make the visualization.
-            var fileName = "./delays.csv";
+            var fileName = "delays.csv";
             var nutritionFields = ["AirTran", "Alaska", "American", "Delta", "Endeavor",
                                    "Envoy", "ExpressJet", "Frontier", "Havaiian", "Jetblue", "SkyWest", "United"];
 
