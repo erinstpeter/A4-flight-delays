@@ -7,7 +7,7 @@ var datasetDayOfWeek, datasetDayOfMonth, datasetMonthOfYear;
 d3.csv("data/DayOfWeek.csv", function(d) {
   return {
     label : d.DayOfWeek,
-    value : d.PercentDelayed
+    value : d.PercentDelayed * 100
   };
 }, function(data) {
   datasetDayOfWeek = data;
@@ -18,7 +18,7 @@ d3.csv("data/DayOfWeek.csv", function(d) {
 d3.csv("data/DayOfMonth.csv", function(d) {
   return {
     label : d.DayOfMonth,
-    value : d.PercentDelayed
+    value : d.PercentDelayed * 100
   };
 }, function(data) {
   datasetDayOfMonth = data;
@@ -27,7 +27,7 @@ d3.csv("data/DayOfMonth.csv", function(d) {
 d3.csv("data/MonthOfYear.csv", function(d) {
   return {
     label : d.MonthOfYear,
-    value : d.PercentDelayed
+    value : d.PercentDelayed * 100
   };
 }, function(data) {
   datasetMonthOfYear = data;
@@ -108,7 +108,7 @@ function change(dataset) {
         .attr("y", 6)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("Distribution %");
+        .text("Flights Delayed %");
 
     // set data
     var bar = svg.selectAll(".bar")
