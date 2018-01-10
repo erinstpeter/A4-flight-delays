@@ -98,7 +98,7 @@ d3.tsv("delays_1.tsv", function(error, data){
                 .ease("linear")
                 .select("title")
                 .text(function(d){
-                    return d.State + " : " + d[selection.value];
+                    return d.State + " : " + d[selection.value] + "mins";
                 });
       
             d3.selectAll("g.y.axis")
