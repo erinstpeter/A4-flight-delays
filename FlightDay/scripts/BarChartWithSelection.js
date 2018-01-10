@@ -1,8 +1,16 @@
 var datasetDayOfWeek, datasetDayOfMonth, datasetMonthOfYear;
 
+//
 // Colors of bars
+//
+
+// Color of regular bar
 barColor = "#abc7de";
+
+// Color of max bar
 barMaxColor = "#c94c4c";
+
+// Color of min bar
 barMinColor = "#86af49";
 
 //
@@ -17,7 +25,7 @@ d3.csv("data/DayOfWeek.csv", function(d) {
 }, function(data) {
   datasetDayOfWeek = data;
   colorizeDataset(datasetDayOfWeek);
-  change(datasetDayOfWeek);
+  change(datasetDayOfWeek, "Day of Week");
 });
 
 d3.csv("data/DayOfMonth.csv", function(d) {
@@ -78,15 +86,15 @@ function selectDataset()
     var value = this.value;
     if (value == "dow")
     {
-        change(datasetDayOfWeek);
+        change(datasetDayOfWeek, "Day of Week");
     }
     else if (value == "dom")
     {
-        change(datasetDayOfMonth);
+        change(datasetDayOfMonth, "Day of Month");
     }
     else if (value == "moy")
     {
-        change(datasetMonthOfYear);
+        change(datasetMonthOfYear, "Month of Year");
     }
 }
 
@@ -121,7 +129,7 @@ var svg = d3.select("body").append("svg")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-function change(dataset) {
+function change(dataset, XAxisLabel) {
 
     // Reset axes and bars
     svg.select(".y.axis").remove();
@@ -135,7 +143,12 @@ function change(dataset) {
     svg.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
+        .call(xAxis)
+        .append("text")
+        .attr("text-anchor","middle")
+        .attr("x", width/2)
+        .attr("y", 40)
+        .text(XAxisLabel);
 
     svg.append("g")
         .attr("class", "y axis")
@@ -146,6 +159,7 @@ function change(dataset) {
         .attr("dy", ".71em")
         .style("text-anchor", "end")
         .text("Flights Delayed %");
+
 
     // set data
     var bar = svg.selectAll(".bar")
