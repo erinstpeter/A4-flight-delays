@@ -33,7 +33,7 @@
                     .range([height, 0]);
 
                 // Create canvas
-                var canvas = d3.select("#vis-container")
+                var canvas = d3.select("body")
                   .append("svg")
                     .attr("width",  width  + margin.left + margin.right)
                     .attr("height", height + margin.top  + margin.bottom)
@@ -103,7 +103,7 @@
                 // Get names of cereals, for dropdown
                 var cereals = Object.keys(cerealMap).sort();
 
-                var dropdown = d3.select("#vis-container")
+                var dropdown = d3.select("body")
                     .insert("select", "svg")
                     .on("change", dropdownChange);
 
