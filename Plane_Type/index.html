@@ -15,8 +15,27 @@
 }
 
 </style>
+
+<p> Here are two plots showing airline delay data, broken out by type of airplane. This data is for planes which departed from Boston Logan Airport in 2017.
+  </p>
+
+
+
+<div>
+    <a href="https://plot.ly/~chilger/6/?share_key=jlckRzEm1zxGjnVzplAARx" target="_blank" title="airline_delay" style="display: block; text-align: center;"><img src="https://plot.ly/~chilger/6.png?share_key=jlckRzEm1zxGjnVzplAARx" alt="airline_delay" style="max-width: 80%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+    <script data-plotly="chilger:6" sharekey-plotly="jlckRzEm1zxGjnVzplAARx" src="https://plot.ly/embed.js" async></script>
+</div>
+
+
+
+
 <svg width="960" height="500"></svg>
 <script src="https://d3js.org/d3.v4.min.js"></script>
+
+
+
+
+
 <script>
 
 var svg = d3.select("svg"),
@@ -44,6 +63,8 @@ d3.tsv("data.tsv", function(d) {
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x));
 
+
+
   g.append("g")
       .attr("class", "axis axis--y")
       .call(d3.axisLeft(y).ticks(10, "%"))
@@ -53,6 +74,8 @@ d3.tsv("data.tsv", function(d) {
       .attr("dy", "0.71em")
       .attr("text-anchor", "end")
       .text("Frequency");
+
+
 
   g.selectAll(".bar")
     .data(data)
