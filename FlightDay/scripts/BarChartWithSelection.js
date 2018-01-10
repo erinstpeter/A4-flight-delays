@@ -1,5 +1,10 @@
 var datasetDayOfWeek, datasetDayOfMonth, datasetMonthOfYear;
 
+// Colors of bars
+barColor = "#abc7de";
+barMaxColor = "#c94c4c";
+barMinColor = "#86af49";
+
 //
 // Loading the CSV files
 //
@@ -11,7 +16,7 @@ d3.csv("data/DayOfWeek.csv", function(d) {
   };
 }, function(data) {
   datasetDayOfWeek = data;
-  
+  colorizeDataset(datasetDayOfWeek);
   change(datasetDayOfWeek);
 });
 
@@ -22,6 +27,7 @@ d3.csv("data/DayOfMonth.csv", function(d) {
   };
 }, function(data) {
   datasetDayOfMonth = data;
+  colorizeDataset(datasetDayOfMonth);
 });
 
 d3.csv("data/MonthOfYear.csv", function(d) {
@@ -31,7 +37,37 @@ d3.csv("data/MonthOfYear.csv", function(d) {
   };
 }, function(data) {
   datasetMonthOfYear = data;
+  colorizeDataset(datasetMonthOfYear);
 });
+
+function colorizeDataset(dataset)
+{
+    maxVal = 0;
+    minVal = Number.MAX_VALUE;
+    for (i = 0; i < dataset.length; i++)
+        {
+            minVal = Math.min(minVal, dataset[i].value);
+            maxVal = Math.max(maxVal, dataset[i].value);
+        }
+
+    for (i = 0; i < dataset.length; i++)
+        {
+            if (dataset[i].value == minVal)
+            {
+                dataset[i].color = barMinColor;
+            }
+            else if (dataset[i].value == maxVal)
+            {
+                dataset[i].color = barMaxColor;
+            }
+            else
+            {
+                dataset[i].color = barColor;
+            }
+        }
+    return dataset;
+}
+
 
 d3.selectAll("input").on("change", selectDataset);
 
@@ -118,6 +154,7 @@ function change(dataset) {
     
     bar.enter().append("rect")
         .attr("class", "bar")
+        .attr("fill", function(d) { return d.color; })
         .attr("x", function(d) { return x(d.label); })
         .attr("y", function(d) { return y(d.value); })
         .attr("height", function(d) { return height - y(d.value); })
