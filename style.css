@@ -2,3 +2,32 @@ html {
 	font-size: 12px;
 	font-family: 'Open Sans', sans-serif;
 }
+
+.navBar_ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li.navBar_li {
+    float: left;
+}
+
+
+li.navBar_li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li.navBar_li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.navBar_active {
+    background-color: #4CAF50;
+}
