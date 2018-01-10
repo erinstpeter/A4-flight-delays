@@ -20,3 +20,19 @@
     font-size: 20px;
 
 }
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    width: 960px;
+    height: 500px;
+    position: relative;
+	font-size: 20px;
+	align-content: center;
+	}
+
+html {
+
+	font-size: 10px;
+	font-family: 'Open Sans', sans-serif;
+	background-color: ##F0FFFF; 
+}
