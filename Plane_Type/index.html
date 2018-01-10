@@ -1,5 +1,8 @@
 <!DOCTYPE html>
+
+<head>
 <meta charset="utf-8">
+<link href="../style.css" rel="stylesheet" type="text/css">
 <style>
 
 .bar {
@@ -15,6 +18,18 @@
 }
 
 </style>
+
+</head>
+
+<body>
+
+  <ul class="navBar_ul">
+      <li class="navBar_li"><a href="/">Home</a></li>
+      <li class="navBar_li"><a href="../Airports/airport_business.html">Airports</a></li>
+      <li class="navBar_li"><a href="../FlightDay/FlightDay.html">Flight Day</a></li>
+      <li class="navBar_li"><a href="../Airlines/airlines.html">Airlines</a></li>
+      <li class="navBar_li"><a class="navBar_active" href="../Plane_Type">Planes</a></li>
+  </ul>
 
 <p> Here are two plots showing airline delay data, broken out by type of airplane. This data is for planes which departed from Boston Logan Airport in 2017.
   </p>
@@ -88,3 +103,5 @@ d3.tsv("data.tsv", function(d) {
 });
 
 </script>
+
+</body>
