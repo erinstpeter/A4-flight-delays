@@ -5,7 +5,7 @@ var datasetDayOfWeek, datasetDayOfMonth, datasetMonthOfYear;
 //
 
 // Color of regular bar
-barColor = "#abc7de";
+barColor = "#adadad";
 
 // Color of max bar
 barMaxColor = "#c94c4c";
