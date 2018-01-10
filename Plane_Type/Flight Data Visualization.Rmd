@@ -1,0 +1,379 @@
+---
+title: "Flight Data Visualization"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(plotly)
+```
+
+
+
+```{r}
+rawDB <- read.csv("FinalFlightsNumeric_with_Aircraft_Info.csv")
+```
+
+
+```{r}
+mainDB <- rawDB %>% 
+  select(UNIQUE_CARRIER, 
+         TAIL_NUM,
+         ORIGIN_AIRPORT_ID, 
+         DEST_AIRPORT_ID,        
+         DISTANCE, 
+         CRS_ELAPSED_TIME,
+         ARR_DELAY,
+         CARRIER_DELAY,     
+         WEATHER_DELAY,      
+         NAS_DELAY,     
+         SECURITY_DELAY,   
+         LATE_AIRCRAFT_DELAY,           
+         CARRIER_NAME,   
+         ORIGIN_AIRPORT,   
+         DESTINATION_AIRPORT, 
+         CARRIER_CODE,  
+         YEAR.MFR,    
+         MFR.MDL.CODE,   
+         MFR,      
+         MODEL,       
+         NO.ENG,     
+         NO.SEATS)
+```
+
+```{r}
+aircraft_types <- unique(mainDB$MODEL)
+write.csv(aircraft_types, "aircraft_types.csv")
+```
+
+
+```{r}
+
+flight_countDB <- mainDB %>%
+  group_by(MODEL) %>%
+  summarize(FLIGHT_COUNT = n()) %>%
+  arrange(desc(FLIGHT_COUNT))
+
+
+
+```
+
+#export to csv to do some manual cleanup in excel
+```{r}
+write.csv(flight_countDB, "aircraft_types.csv")
+```
+
+
+#import this new version of the csv 
+```{r}
+flight_countDB1 <- read.csv("aircraft_types.csv")
+```
+
+```{r}
+aircraft_types_mapping <- flight_countDB1 %>% 
+  select(MODEL, MODEL_GENERAL)
+```
+
+
+
+#merge the new version back to the old table
+
+```{r}
+mainDB_aircraft_types <- left_join(mainDB, aircraft_types_mapping, by = c("MODEL", "MODEL"))
+```
+
+
+
+
+#Get number of flights by model general
+```{r}
+mainDB_aircraft_types_flight_count <- mainDB_aircraft_types %>%
+  group_by(MODEL_GENERAL) %>%
+  summarize(FLIGHT_COUNT_SUM = n()) %>%
+  arrange(desc(FLIGHT_COUNT_SUM))
+```
+
+
+
+#make vector of top aircraft
+```{r}
+
+mainDB_aircraft_types_flight_count <- mainDB_aircraft_types_flight_count %>% 
+  filter(MODEL_GENERAL != "NA") %>%
+  filter(MODEL_GENERAL!= "OTHER")
+
+
+top_aircraft <- head(as.vector(mainDB_aircraft_types_flight_count$MODEL_GENERAL), 7)
+top_aircraft
+
+```
+
+#filter out unpopular aircraft, and flights that dont have elapsed time info
+```{r}
+mainDB_aircraft_types <- mainDB_aircraft_types %>%
+  filter(MODEL_GENERAL %in% top_aircraft) %>%
+  filter(!is.na(CRS_ELAPSED_TIME)) %>%
+  filter(!is.na(ARR_DELAY)) %>%
+  filter(ORIGIN_AIRPORT == "Boston, MA: Logan International")%>%
+  droplevels()
+
+```
+
+```{r}
+mainDB_aircraft_types$ROUTE <- paste(mainDB_aircraft_types$ORIGIN_AIRPORT,"to", mainDB_aircraft_types$DESTINATION_AIRPORT)
+```
+
+
+
+#get most popular route by airplane
+
+```{r}
+dataviz_table <- mainDB_aircraft_types %>% 
+  group_by(MODEL_GENERAL) %>%
+  summarize(FLEET_SIZE = length(unique(TAIL_NUM)),
+            
+            POPULAR_ROUTE = names(which.max(table(ROUTE))),
+            DESTINATION_AIRPORT = names(which.max(table(DESTINATION_AIRPORT))),
+            POPULAR_CARRIER = names(which.max(table(CARRIER_NAME))),
+            NUM_FLIGHTS = n(),
+            AVG_NUM_FLIGHTS_PLANE = round(NUM_FLIGHTS/FLEET_SIZE,2),
+            AVG_MILES_FLIGHT = round(sum(DISTANCE)/NUM_FLIGHTS,2),
+            AVG_TIME_FLIGHT = round(sum(CRS_ELAPSED_TIME)/NUM_FLIGHTS,2),
+            AVG_ARR_DELAY  = round(mean(ARR_DELAY),2),
+            ON_TIME_PERF = round(sum((ARR_DELAY < 15))/NUM_FLIGHTS,2) ,
+            AVG_SEAT = round(mean(NO.SEATS),0), 
+            AVG_AGE = round(mean(2017 - YEAR.MFR),2),
+            NUM_ENGINES = round(mean(NO.ENG),0)
+            
+            
+            
+            
+            
+            )    
+
+
+```
+#Save out the final data table
+```{r}
+write.csv(dataviz_table , "dataviz_table.csv")
+```
+
+
+
+
+
+
+
+
+
+
+```{r}
+ hist_table <- mainDB_aircraft_types %>% 
+  filter(ORIGIN_AIRPORT == "Boston, MA: Logan International")%>%
+  select(MODEL_GENERAL, ARR_DELAY)
+        
+```
+
+```{r}
+
+hist_table_test <- transform(hist_table, sum = ave(ARR_DELAY, CARRIER_CODE, FUN = cumcount))
+```
+
+```{r}
+hist_table$num<- ave(hist_table$ARR_DELAY, hist_table$CARRIER_CODE, FUN = seq_along)
+```
+
+```{r}
+library(tidyr)
+
+```
+
+```{r}
+
+
+
+hist_table_test <- hist_table %>% 
+  mutate(i = row_number()) %>% 
+  spread(MODEL_GENERAL, ARR_DELAY)
+```
+
+```{r}
+hist_table_test$i <- NULL
+```
+
+
+
+```{r}
+write.csv(hist_table, "hist_table.csv")
+```
+
+------
+
+```{r}
+bar_table <- mainDB_aircraft_types %>%
+  group_by(MODEL_GENERAL) %>%
+  summarize(NUM_FLIGHTS = n(),
+    ON_TIME_PERF = round(sum((ARR_DELAY < 15))/NUM_FLIGHTS,3))
+
+bar_table <- bar_table %>%
+  select(MODEL_GENERAL, ON_TIME_PERF)
+```
+
+
+```{r}
+write.csv(bar_table, "bar_table.csv")
+```
+
+------------------
+#plotly
+
+
+
+```{r}
+library(plotly)
+
+Sys.setenv("plotly_username"="chilger")
+Sys.setenv("plotly_api_key"="XTYltgJFx1jAaiBAzigK")
+
+
+```
+
+
+
+
+#Year of manufacture of flights departing Boston
+
+```{r}
+
+
+
+mainDB_aircraft_types$MODEL_GENERAL <- factor(mainDB_aircraft_types$MODEL_GENERAL, levels =c("A321","737","A320","A319","717","757","CL-600"))
+
+
+p <- plot_ly(mainDB_aircraft_types, y= ~YEAR.MFR, x = ~MODEL_GENERAL, color = ~MODEL_GENERAL, type = "box") 
+
+#p <- plot_ly(ggplot2::diamonds, y = ~price, color = ~cut, type = "box")
+p
+
+# Create a shareable link to your chart
+# Set up API credentials: https://plot.ly/r/getting-started
+
+#chart_link = api_create(p, filename="box/jitter")
+#chart_link
+```
+
+
+#Number of Seats of flights departing boston
+```{r}
+mainDB_aircraft_types$MODEL_GENERAL <- factor(mainDB_aircraft_types$MODEL_GENERAL, levels =c("A321","737","A320","A319","717","757","CL-600"))
+
+
+p <- plot_ly(mainDB_aircraft_types, y= ~NO.SEATS, x = ~MODEL_GENERAL, color = ~MODEL_GENERAL, type = "box") 
+
+#p <- plot_ly(ggplot2::diamonds, y = ~price, color = ~cut, type = "box")
+p
+```
+
+
+#delay categorization
+
+```{r}
+mainDB_aircraft_types_delay <- mainDB_aircraft_types
+
+```
+
+```{r}
+mainDB_aircraft_types_delay$DELAY_LEVEL <-cut(mainDB_aircraft_types_delay$ARR_DELAY, 
+                                              breaks = c(-Inf,0, 15, 60, 180, Inf),
+                                              labels = c("Early", "< 15 Min", "< 60 Min", "< 180 Min", "Fucking late"),
+                                              right = FALSE)
+
+  
+  
+
+
+```
+
+#group_by plane and then delay type, summarize by % of each delay type
+```{r}
+mainDB_aircraft_types_delay_grouped <- mainDB_aircraft_types_delay %>% 
+  group_by(MODEL_GENERAL, DELAY_LEVEL) %>%
+  summarize(n = n()) %>%
+  mutate(PERCENT_OCCURANCE = round(n / sum(n), 4))
+
+
+
+
+```
+
+
+
+
+
+
+```{r}
+mainDB_aircraft_types_delay_grouped$DELAY_LEVEL <- factor(mainDB_aircraft_types_delay_grouped$DELAY_LEVEL, levels =rev(c("Fucking late", "< 180 Min","< 60 Min", "< 15 Min", "Early")))
+```
+
+
+
+
+```{r}
+
+
+ 
+# Stacked Percent
+ggplot(mainDB_aircraft_types_delay_grouped, aes(fill=DELAY_LEVEL, y=PERCENT_OCCURANCE, x=MODEL_GENERAL)) + 
+    geom_bar( stat="identity", position="fill")
+ 
+```
+
+
+```{r}
+
+f <- list(
+  size = 18
+)
+
+x <- list(
+  title = "Percentage",
+  titlefont = f,
+  nticks = 10,
+  tickformat = "%")
+
+y <- list(
+  title = "Model of Airplane",
+  titlefont = f)
+
+m <- list(
+  l = 50,
+  r = 50,
+  b = 100,
+  t = 100,
+  pad = 4
+)
+
+
+
+
+
+
+delay_plot <- plot_ly(mainDB_aircraft_types_delay_grouped, y = ~MODEL_GENERAL, x = ~PERCENT_OCCURANCE, color = ~DELAY_LEVEL, colors = rev(c('#d73027','#fc8d59','#fee08b','#a6d96a','#66bd63')), opacity = "0.8", type = "bar") %>%
+  layout(xaxis = x,yaxis = y,bargap=0.2, barmode = 'stack', title = "Percent Occurance of Delay", titlefont = c(size = 40), width = 500, height = 700, margin = m )
+
+
+delay_plot
+
+
+chart_link = plotly_POST(delay_plot, filename="airline_delay")
+
+chart_link
+
+```
+
+
