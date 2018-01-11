@@ -15,8 +15,24 @@
       <li class="navBar_li"><a class="navBar_active" href="../PlaneType">Planes</a></li>
   </ul>
 
-<p> Here are two plots showing airline delay data, broken out by type of airplane. This data is for planes which departed from Boston Logan Airport in 2017.
-  </p>
+
+  <H1>Which type of planes are most susceptible to delays?</H1>
+
+  <h3>Source of Data</h3>
+  <p>Data was gathered from the Department of Transportation's web site  <A HREF="https://transtats.bts.gov/DL_SelectFields.asp?Table_ID=236&DB_Short_Name=On-Time">On-Time Performances table</A>, for all flights departing from the top 50 busiest US airports in 2017.  We chose to look at trends for the 7 most common types of aircraft. </p>
+
+  <p>Two charts are below.
+
+The first is a stacked bar chart which indicates percent occurrence of delay, categorized into 5 levels. For this, we filtered down just to flights that were departing Boston. This chart is interactive, so you can click on each delay category in the legend to see a subset of the data.  This chart was made with Plotly.js</p>
+
+
+
+  <h3>Insights for Chart 1 - Flights Departing from Boston</h3>
+  <ul>
+  <li>You have the greatest chance of arriving more than 180 minutes late if you fly on at 717</b>.</li>
+  <li>You have the greatest chance of arriving early if you fly on either a 737 or A319 (however, the A319 also has the second highest occurrence of flights delayed more than 180 minutes)</li>
+  <li>You have the greatest chance of arriving early or within 15 minutes of your scheduled arrival if you fly on a CL-600</li>
+  </ul>
 
 
 
@@ -26,6 +42,12 @@
 </div>
 
 
+  <h3>Insights for Chart 2 - Flights Departing from Top 50 Busiest Airports in US</h3>
+  <ul>
+  <li>You have the greatest chance of arriving on-time if you fly on a 717 (note this trend is different from that of just flights departing from Boston).</li>
+  <li>You have the lowest chance of arriving on-time if you fly on a CL-600 (note this trend is different from that of just flights departing from Boston)</li>
+  </ul>
+
 
 
 <svg width="960" height="500"></svg>
@@ -33,7 +55,10 @@
 <script src="chart.js"></script>
 
 
+<h3>Summary</h3>
 
+
+<p>The results are drastically different when looking at flights departing just Boston or departing from the 50 busiest airports in the US.</p>
 
 
 
