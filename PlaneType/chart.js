@@ -23,19 +23,19 @@ d3.tsv("data.tsv", function(d) {
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x));
 
-
-
   g.append("g")
       .attr("class", "axis axis--y")
       .call(d3.axisLeft(y).ticks(10, "%"))
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", "0.71em")
-      .attr("text-anchor", "end")
-      .text("Frequency");
 
-
+  svg.append("g")
+        .append("text")
+        //.attr("transform", "rotate(-90)")
+        .attr("class", "ylabel")
+        .attr("y", 1)
+        //.attr("x", -170)
+        .attr("dy", "0.7em")
+        .style("text-anchor", "beginning")
+        .text("% On-time arrivals");
 
   g.selectAll(".bar")
     .data(data)
