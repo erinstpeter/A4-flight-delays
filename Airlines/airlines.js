@@ -48,6 +48,10 @@ d3.tsv("delays_1.tsv", function(error, data){
         .attr("dy", "-.55em")
         .attr("transform", "rotate(-90)" );
 
+    svg.append('text')
+    	.attr("transform", "translate(" + -100 +"," + 40 + ")")
+    	.attr('class', 'axis-label')
+    	.text('Minutes');
 
     svg.append("g")
         .attr("class", "y axis")
