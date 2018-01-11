@@ -12,6 +12,10 @@ body {
     padding: 20px 20px 20px 20px;
 }
 
+img {
+    border-radius: 8px;
+}
+
 .navBar_ul {
     list-style-type: none;
     margin: 0;
