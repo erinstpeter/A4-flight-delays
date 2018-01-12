@@ -1,12 +1,15 @@
 # A4-flight-delays
 
+* Trello board (including user stories): https://trello.com/b/D9AjuXzA/a4-flight-delays
 
-Links to Sample D3 visualizations:
+* Burn down chart: https://github.com/erinstpeter/A4-flight-delays/blob/master/Process/A4-BurnChart.pdf
 
-For Airports: https://bl.ocks.org/ctufts/f38ef0187f98c537d791d24fda4a6ef9
+* Record of meetings and Scrum: ???
 
-For Days: http://bl.ocks.org/juan-cb/1afee8f2cae799e86707
+* Retrospective: ???
 
-For Airlines: http://bl.ocks.org/jonahwilliams/2f16643b999ada7b1909
-
-For Planes: https://bl.ocks.org/mbostock/3885304
+* Individual members data and visualization:
+  * Erin (https://erinstpeter.github.io/A4-flight-delays/Airports/): ???
+  * Bobi (https://erinstpeter.github.io/A4-flight-delays/FlightDay/): ???
+  * Zain (https://erinstpeter.github.io/A4-flight-delays/Airlines/): ???
+  * Chris (https://erinstpeter.github.io/A4-flight-delays/Airplanes/): ???
