@@ -53,6 +53,13 @@ d3.tsv("delays_1.tsv", function(error, data){
     	.attr('class', 'axis-label')
     	.text('Minutes');
 
+    svg.append('text')
+        .attr("transform", "translate(" + 200 +"," + -40 + ")")
+        .attr('class', 'chart-title')
+        .text('Delays by Airline')
+        .style("font-size", "20px")
+        .style("text-decoration", "underline");
+
     svg.append("g")
         .attr("class", "y axis")
         .call(yAxis);
