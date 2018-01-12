@@ -1,7 +1,7 @@
 var width = 960,
-    height = 500,
+    height = 650,
     padding = 1.5, // separation between same-color nodes
-    clusterPadding = 6, // separation between different-color nodes
+    clusterPadding = 5, // separation between different-color nodes
     maxRadius = 14;
 
 var color = d3.scale.ordinal()
@@ -38,7 +38,7 @@ for (var i = 0; i<n; i++){
 var force = d3.layout.force()
     .nodes(nodes)
     .size([width, height])
-    .gravity(.02)
+    .gravity(.01)
     .charge(0)
     .on("tick", tick)
     .start();
