@@ -69,16 +69,37 @@ for arg in sys.argv[1:]:
 
 
 #
-# Write the resulted stats
+# Write the resulted stats, translate using a lookup table if provided
 #
 
-def WritePercentDelayedStats(csvfile, FirstColumnHeader, l):
+def WritePercentDelayedStats(csvfile, FirstColumnHeader, l, lookupTable = ''):
+	#
+	# Read lookup table (if provided)
+	#
+	lookupData =''
+	if lookupTable != '':
+		with open(lookupTable) as f:
+			reader = csv.DictReader(f)
+			lookupData = list(reader)
+
+	#
+	# Write the stats
+	#
 	writer = csv.DictWriter(csvfile, [FirstColumnHeader, 'PercentDelayed'])
 	writer.writeheader()
 	for i in range(len(l)):
-		writer.writerow({FirstColumnHeader: i + 1, 'PercentDelayed' : l[i]['PercentDelayed']})
+		# Use the lookup to replace values
+		keyValue = str(i + 1)
+		if lookupData != '':
+			for row in lookupData:
+				if row['Code'] == keyValue:
+					keyValue = row['Description']
+					break
+		# Write the row to the ouput file
+		writer.writerow({FirstColumnHeader: keyValue, 'PercentDelayed' : l[i]['PercentDelayed']})
 
-WritePercentDelayedStats(open('DayOfWeek.csv', 'w'), 'DayOfWeek', DayOfWeek)
+# Write results
+WritePercentDelayedStats(open('DayOfWeek.csv', 'w'), 'DayOfWeek', DayOfWeek, 'L_WEEKDAYS.csv')
 WritePercentDelayedStats(open('DayOfMonth.csv', 'w'), 'DayOfMonth', DayOfMonth)
-WritePercentDelayedStats(open('MonthOfYear.csv', 'w'), 'MonthOfYear', MonthOfYear)
+WritePercentDelayedStats(open('MonthOfYear.csv', 'w'), 'MonthOfYear', MonthOfYear, 'L_MONTHS.csv')
 
