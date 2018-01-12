@@ -1,10 +1,8 @@
-Year	State	-	Houston	Chicago	Washington, DoC	SanFrancisco	NewYork
-2017	American		6	10	9	14	16
-2017	Delta		11	15	14	19	21
-2017	Envoy		4	8	7	12	14
-2017	ExpressJet		8	13	11	17	18
-2017	Frontier		8	12	11	16	18
-2017	Hawaiian		10	14	13	18	20
-2017	JetBlue		2	7	6	11	12
-2017	SkyWest		10	14	13	18	20
-2017	United		8	13	12	17	18
+Year	State	-	Houston	Chicago	New York	San Francisco	Washington DC
+2017	JetBlue			13.06987724	20.41593595	14.46557377	5.078093306
+2017	American		2	6.600067047	17.66447368		
+2017	Delta				29.4743833	15.79310345	
+2017	United		13	14.65313653		19.73199635	10.49547325
+2017	SkyWest			1.466666667			
+2017	Spirit			10.34597156			
+2017	Virgin					21.24491682	
