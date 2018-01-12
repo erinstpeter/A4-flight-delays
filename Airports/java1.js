@@ -1,8 +1,8 @@
 var width = 960,
-    height = 500,
+    height = 650,
     padding = 1.5, // separation between same-color nodes
-    clusterPadding = 6, // separation between different-color nodes
-    maxRadius = 12;
+    clusterPadding = 5, // separation between different-color nodes
+    maxRadius = 14;
 
 var color = d3.scale.ordinal()
       .range(["#0099CC", "#E4002B","#F7D36F" ]);
@@ -38,7 +38,7 @@ for (var i = 0; i<n; i++){
 var force = d3.layout.force()
     .nodes(nodes)
     .size([width, height])
-    .gravity(.02)
+    .gravity(.01)
     .charge(0)
     .on("tick", tick)
     .start();
@@ -47,6 +47,30 @@ var svg = d3.select("#svg_bubble_here").append("svg")
     .attr("width", width)
     .attr("height", height);
 
+svg.append('text')
+    .attr("transform", "translate(" + 0 +"," + 50 + ")")
+    .attr('class', 'chart-title')
+    .text('Airport Sizes by Delay Categories')
+    .style("font-size", "20px")
+    .style("text-decoration", "underline")
+
+svg.append('text')
+    .attr("transform", "translate(" + 30 +"," + 70 + ")")
+    .attr('class', 'legend1')
+    .text('**larger bubbles indicate more airport traffic')
+    .style("font-size", "12px")
+
+    svg.append('text')
+        .attr("transform", "translate(" + 30 +"," + 90 + ")")
+        .attr('class', 'legend2')
+        .text('**color represents on-time departure %s:')
+        .style("font-size", "12px")
+
+    svg.append('text')
+        .attr("transform", "translate(" + 30 +"," + 110 + ")")
+        .attr('class', 'legend3')
+        .text('**red: under 80% | yellow: 80-84% | blue: 84%-87%')
+        .style("font-size", "12px")
 
 var node = svg.selectAll("circle")
     .data(nodes)
