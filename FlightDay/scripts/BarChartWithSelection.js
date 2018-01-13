@@ -1,19 +1,6 @@
 var datasetDayOfWeek, datasetDayOfMonth, datasetMonthOfYear;
 
 //
-// Colors of bars
-//
-
-// Color of regular bar
-barColor = "#adadad";
-
-// Color of max bar
-barMaxColor = "#c94c4c";
-
-// Color of min bar
-barMinColor = "#86af49";
-
-//
 // Loading the CSV files
 //
 
@@ -25,7 +12,7 @@ d3.csv("data/DayOfWeek.csv", function(d) {
 }, function(data) {
   datasetDayOfWeek = data;
   colorizeDataset(datasetDayOfWeek);
-  change(datasetDayOfWeek, "Day of Week");
+  change(datasetDayOfWeek, DOWTitle, DOWSubtitle, DOWXAxis);
 });
 
 d3.csv("data/DayOfMonth.csv", function(d) {
@@ -48,8 +35,20 @@ d3.csv("data/MonthOfYear.csv", function(d) {
   colorizeDataset(datasetMonthOfYear);
 });
 
+
 function colorizeDataset(dataset)
 {
+    //
+    // Colors of bars
+    //
+
+    // Color of regular bar
+    barColor = "#adadad";
+    // Color of max bar
+    barMaxColor = "#c94c4c";
+    // Color of min bar
+    barMinColor = "#86af49";
+
     maxVal = 0;
     minVal = Number.MAX_VALUE;
     for (i = 0; i < dataset.length; i++)
@@ -76,6 +75,24 @@ function colorizeDataset(dataset)
     return dataset;
 }
 
+//
+// Chart titles
+//
+
+// Day of week
+DOWTitle = "How the day of week affects chances of flight delays?"
+DOWSubtitle = "Histogram of delayed flights per day of the week"
+DOWXAxis = "Day"
+
+// Day of month
+DOMTitle = "How the day of month affects chances of flight delays?"
+DOMSubtitle = "Histogram of delayed flights per day of the month"
+DOMXAxis = "Day of Month"
+
+// Month of year
+MOYTitle = "How the month affects chances of flight delays?"
+MOYSubtitle = "Histogram of delayed flights per month"
+MOYXAxis = "Month"
 
 d3.selectAll("input").on("change", selectDataset);
 
@@ -86,15 +103,15 @@ function selectDataset()
     var value = this.value;
     if (value == "dow")
     {
-        change(datasetDayOfWeek, "Day of Week");
+        change(datasetDayOfWeek, DOWTitle, DOWSubtitle, DOWXAxis);
     }
     else if (value == "dom")
     {
-        change(datasetDayOfMonth, "Day of Month");
+        change(datasetDayOfMonth, DOMTitle, DOMSubtitle, DOMXAxis);
     }
     else if (value == "moy")
     {
-        change(datasetMonthOfYear, "Month of Year");
+        change(datasetMonthOfYear, MOYTitle, MOYSubtitle, MOYXAxis);
     }
 }
 
@@ -129,16 +146,40 @@ var svg = d3.select("body").append("svg")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-function change(dataset, XAxisLabel) {
+function change(dataset, Title, Subtitle, XAxisLabel) {
 
     // Reset axes and bars
     svg.select(".y.axis").remove();
     svg.select(".x.axis").remove();
     svg.selectAll(".bar").remove();
+    svg.select("#chartTitle").remove();
+    svg.select("#chartSubTitle").remove();
 
     x.domain(dataset.map(function(d) { return d.label; }));
     y.domain([0, d3.max(dataset, function(d) { return d.value; })]);
 
+    //
+    // Add chart title
+    //
+    svg.append('text')
+        .attr("id", "chartTitle")
+        .attr("y", "-40")
+        .attr("x", "50%")
+        .attr("text-anchor", "middle")
+        .attr('class', 'chart-title')
+        .text(Title)
+        .style("font-size", "20px")
+        .style("font-weight", "bold")
+
+    // Add subtitle
+     svg.append('text')
+        .attr("id", "chartSubTitle")
+        .attr("y", "-15")
+        .attr("x", "50%")
+        .attr("text-anchor", "middle")
+        .attr('class', 'chart-title')
+        .text(Subtitle)
+        .style("font-size", "14px")
 
     svg.append("g")
         .attr("class", "x axis")
@@ -148,6 +189,7 @@ function change(dataset, XAxisLabel) {
         .attr("text-anchor","middle")
         .attr("x", width/2)
         .attr("y", 40)
+        .style("font-size", "12px")
         .text(XAxisLabel);
 
     svg.append("g")
@@ -158,6 +200,7 @@ function change(dataset, XAxisLabel) {
         .attr("y", 6)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
+        .style("font-size", "12px")
         .text("Flights Delayed %");
 
 
