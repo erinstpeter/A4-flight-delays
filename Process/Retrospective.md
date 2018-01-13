@@ -11,3 +11,5 @@ TEAM CONSENSUS FOR NEXT TIME:
 START: If we were to do this project again, we would hold an in-person strategic "scoping" meeting earlier on to assess team skills and hone in on project goals and user stories earlier. This would help us to focus our time in more targeted ways and perhaps better dedicate resources toward both developing a predictive model and giving adequate time to developing visualizations.
 
 CONTINUE: Meeting in person as much as possible.
+
+STOP: Waiting to format/standardize files until mid-way though the project. Next time, we could easily standardize our filing/folder/page system from the start of the project.
