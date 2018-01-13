@@ -4,9 +4,9 @@
 
 * [Burn down chart](https://github.com/erinstpeter/A4-flight-delays/blob/master/Process/A4-BurnChart.pdf)
 
-* Record of meetings and Scrum: ???
+* [Record of meetings and Scrum](https://github.com/erinstpeter/A4-flight-delays/blob/master/Process/MeetingsLog.md)
 
-* Retrospective: ???
+* [Retrospective](https://github.com/erinstpeter/A4-flight-delays/blob/master/Process/Retrospective.md)
 
 * Individual members data and visualization:
   * Erin (https://erinstpeter.github.io/A4-flight-delays/Airports/): ???
