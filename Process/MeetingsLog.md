@@ -1,4 +1,6 @@
-# TEAM SCRUM AND MEETING LOG
+# Team Scrum and Meeting Log
+
+In general, most of the work was done during in-person work meetings (total of ~25 hours).
 
 ## Pre-Sprint 1 Meeting Log (Wednesday, Jan 3rd)
 
