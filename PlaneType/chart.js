@@ -1,5 +1,5 @@
 var svg = d3.select("svg"),
-    margin = {top: 20, right: 20, bottom: 30, left: 40},
+    margin = {top: 55, right: 20, bottom: 30, left: 40},
     width = +svg.attr("width") - margin.left - margin.right,
     height = +svg.attr("height") - margin.top - margin.bottom;
 
@@ -18,6 +18,8 @@ d3.tsv("data.tsv", function(d) {
   x.domain(data.map(function(d) { return d.letter; }));
   y.domain([0.7, d3.max(data, function(d) { return d.frequency; })]);
 
+
+
   g.append("g")
       .attr("class", "axis axis--x")
       .attr("transform", "translate(0," + height + ")")
@@ -27,11 +29,21 @@ d3.tsv("data.tsv", function(d) {
       .attr("class", "axis axis--y")
       .call(d3.axisLeft(y).ticks(10, "%"))
 
+
+  // Add chart title
+  svg.append('text')
+      .attr("transform", "translate(" + 250 +"," + 20 + ")")
+      .attr('class', 'chart-title')
+      .text('On-Time Arrivals by Plane Type')
+      .style("font-size", "20px")
+      .style("text-decoration", "underline");
+
+
   svg.append("g")
         .append("text")
         //.attr("transform", "rotate(-90)")
         .attr("class", "ylabel")
-        .attr("y", 1)
+        .attr("y", 40)
         //.attr("x", -170)
         .attr("dy", "0.7em")
         .style("text-anchor", "beginning")
