@@ -1,5 +1,8 @@
 #!/usr/bin/env python2
 
+# Creates histograms from DOT on-time arrival cvs
+# Developed by: Bobi Marciano Gilburd
+
 # This Python scripts reads DOT on-time arrival csvs and creates
 # statistics of flights being delayed by:
 # - Day of week
