@@ -8,8 +8,8 @@
 
 * [Retrospective](https://github.com/erinstpeter/A4-flight-delays/blob/master/Process/Retrospective.md)
 
-* Individual members data and visualization:
-  * Erin (https://erinstpeter.github.io/A4-flight-delays/Airports/): ???
-  * Bobi (https://erinstpeter.github.io/A4-flight-delays/FlightDay/): ???
-  * Zain (https://erinstpeter.github.io/A4-flight-delays/Airlines/): ???
-  * Chris (https://erinstpeter.github.io/A4-flight-delays/Airplanes/): ???
+* Members data and visualization notes:
+  * [Erin](https://github.com/erinstpeter/A4-flight-delays/blob/master/Airports/readme.md)
+  * [Bobi](https://github.com/erinstpeter/A4-flight-delays/blob/master/FlightDay/data/README.md)
+  * Zain
+  * [Chris](https://github.com/erinstpeter/A4-flight-delays/blob/master/PlaneType/README.md)
