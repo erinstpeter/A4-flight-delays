@@ -8,4 +8,6 @@ What would you do differently this time?
 * Zain: Would have been liked to do a predictive model using 2017 data and predicting delays in 2018 by getting 2018 flight schedule. Would have tried to make the visualization more dynamic by updating the X-axis to incorporate missing data (missing because the airline did not fly that route) for certain routes.
 
 TEAM CONSENSUS FOR NEXT TIME:
-If we were to do this project again, we would hold an in-person strategic "scoping" meeting earlier on to assess team skills and hone in on project goals and user stories earlier. This would help us to focus our time in more targeted ways and perhaps better dedicate resources toward both developing a predictive model and giving adequate time to developing visualizations.
+START: If we were to do this project again, we would hold an in-person strategic "scoping" meeting earlier on to assess team skills and hone in on project goals and user stories earlier. This would help us to focus our time in more targeted ways and perhaps better dedicate resources toward both developing a predictive model and giving adequate time to developing visualizations.
+
+CONTINUE: Meeting in person as much as possible.
