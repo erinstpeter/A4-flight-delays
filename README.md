@@ -15,5 +15,5 @@
 * Members data and visualization notes:
   * [Erin](https://github.com/erinstpeter/A4-flight-delays/blob/master/Airports/readme.md)
   * [Bobi](https://github.com/erinstpeter/A4-flight-delays/blob/master/FlightDay/data/README.md)
-  * Zain
+  * [Zain](https://github.com/erinstpeter/A4-flight-delays/blob/master/Airlines/Readme.md)
   * [Chris](https://github.com/erinstpeter/A4-flight-delays/blob/master/PlaneType/README.md)
