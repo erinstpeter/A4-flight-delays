@@ -1,6 +1,6 @@
 # Plane Type statistics page
 
-Created by **Chris Hilger**
+Created by **Chris Hilger** (Uploaded by Bobi since Chris had spotty internet access)
 
 https://erinstpeter.github.io/A4-flight-delays/PlaneType/
 
