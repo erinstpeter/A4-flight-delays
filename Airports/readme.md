@@ -1,5 +1,8 @@
- [Airports—Erin St. Peter]
- https://erinstpeter.github.io/A4-flight-delays/Airports/
+# Airports statistics page
+
+Created by **Erin St. Peter**
+
+https://erinstpeter.github.io/A4-flight-delays/Airports/
  
 Process for Gathering & Editing Data:
 I used the DOT annual passengers dataset (Excel file for years 2005-2016 found here https://www.rita.dot.gov/bts/press_releases/bts013_17) to serve as the traffic data per airport in this analysis. This dataset only included the thirty US airports with the highest traffic. The full file can be found in my repository, titled Large_Hubs.csv

@@ -1,3 +1,9 @@
+# Airlines statistics page
+
+Created by **Zain Ul Abideen Shahid**
+
+https://erinstpeter.github.io/A4-flight-delays/Airlines/
+
 Data and analysis:
 
 The Data used for the visualization was gathered from the Department of Transportations On-Time Performance statistics website.From this, I ran an R script (https://github.com/erinstpeter/A4-flight-delays/tree/master/PlaneType/Flight Data Visualization.Rmd) to clean the table(this is the same R script that Chris ran to prepare his data). The R Script gave me the file that I used python to create a table of average flight delays over 2017. I only kept routes from Boston to New York, Houston, San Francisco, Washington D.C. and Chicago.
